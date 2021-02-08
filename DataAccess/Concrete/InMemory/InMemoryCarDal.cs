@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryCarDal()
         {
             _cars = new List<Car> {
-            new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=100,ModelYear="2018",Descriptions="Linea 1.6,Manual" },
-            new Car{CarId=2,BrandId=1,ColorId=2,DailyPrice=170,ModelYear="2019",Descriptions="Egea,Manual"  },
-            new Car{CarId=3,BrandId=2,ColorId=1,DailyPrice=200,ModelYear="2019",Descriptions="Focus,Manual"  },
-            new Car{CarId=4,BrandId=3,ColorId=3,DailyPrice=250,ModelYear="2019",Descriptions="E250,Automatic"  },
-            new Car{CarId=5,BrandId=4,ColorId=1,DailyPrice=450,ModelYear="2020",Descriptions="Taycan Turbo S,Automatic"  }
+            new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=100,ModelYear=2018,Descriptions="Linea 1.6,Manual" },
+            new Car{CarId=2,BrandId=1,ColorId=2,DailyPrice=170,ModelYear=2019,Descriptions="Egea,Manual"  },
+            new Car{CarId=3,BrandId=2,ColorId=1,DailyPrice=200,ModelYear=2019,Descriptions="Focus,Manual"  },
+            new Car{CarId=4,BrandId=3,ColorId=3,DailyPrice=250,ModelYear=2019,Descriptions="E250,Automatic"  },
+            new Car{CarId=5,BrandId=4,ColorId=1,DailyPrice=450,ModelYear=2020,Descriptions="Taycan Turbo S,Automatic"  }
             };
         }
 
@@ -52,6 +53,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetById(int CarId)
         {
             return _cars.Where(c => c.CarId == CarId).ToList();
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)
