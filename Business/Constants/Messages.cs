@@ -31,5 +31,11 @@ namespace Business.Constants
         public static string UsersListed = "User Listed";
         public static string UserUpdated="User Updated";
         public static string UserNameInvalid = "name must be at least 2 characters";
+        internal static string BrandAdded;
+        internal static string BrandDeleted;
+        internal static string BrandUpdated;
+        internal static string ColorDeleted;
+        internal static string ColorAdded;
+        internal static string ColorUpdated;
     }
 }

@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAvailableCars()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.ReturnDate != null));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.RentDate == null));
         }
 
         public IDataResult<Rental> GetRentalById(int id)
