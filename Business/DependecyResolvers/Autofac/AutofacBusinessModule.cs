@@ -37,6 +37,9 @@ namespace Business.DependecyResolvers.Autofac
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

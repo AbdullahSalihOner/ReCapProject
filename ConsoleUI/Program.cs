@@ -102,65 +102,65 @@ namespace ConsoleUI
             }
         }
 
-        private static void JoinTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.GetCarDetails();
-            if (result.Success==true)
-            {
-                foreach (var car in result.Data)
-                {
+        //private static void JoinTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+        //    var result = carManager.GetCarDetails();
+        //    if (result.Success==true)
+        //    {
+        //        foreach (var car in result.Data)
+        //        {
                     
                     
-                    Console.WriteLine( car.CarName + " / / " + car.BrandName + " / / " + car.CategoryName + " / / " + car.ColorName);
+        //            Console.WriteLine( car.CarName + " / / " + car.BrandName + " / / " + car.CategoryName + " / / " + car.ColorName);
 
-                }
+        //        }
 
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
 
             
-        }
+        //}
 
-        private static void AddTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Car car = new Car
-            {
-                CarName = "Avansis",
-                CategoryId = 1,
-                BrandId = 6,
-                ColorId = 1,
-                ModelYear = 2013,
-                DailyPrice = 300,
-                Descriptions = "Manuel"
+        //private static void AddTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+        //    Car car = new Car
+        //    {
+        //        CarName = "Avansis",
+        //        CategoryId = 1,
+        //        BrandId = 6,
+        //        ColorId = 1,
+        //        ModelYear = 2013,
+        //        DailyPrice = 300,
+        //        Descriptions = "Manuel"
 
-            };
-            carManager.Add(car);
-        }
+        //    };
+        //    carManager.Add(car);
+        //}
 
-        private static void GetByBrandId()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Console.WriteLine("Mercedes Cars\n____________");
-            foreach (var car in carManager.GetCarsByBrandId(3).Data)
-            {
-                Console.WriteLine(car.CarName);
-            }
-        }
+        //private static void GetByBrandId()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+        //    Console.WriteLine("Mercedes Cars\n____________");
+        //    foreach (var car in carManager.GetCarsByBrandId(3).Data)
+        //    {
+        //        Console.WriteLine(car.CarName);
+        //    }
+        //}
 
-        private static void GetByColorId()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Console.WriteLine("White Cars\n____________");
-            foreach (var car in carManager.GetCarsByColorId(1).Data)
-            {
-                Console.WriteLine(car.CarName);
-            }
-        }
+        //private static void GetByColorId()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+        //    Console.WriteLine("White Cars\n____________");
+        //    foreach (var car in carManager.GetCarsByColorId(1).Data)
+        //    {
+        //        Console.WriteLine(car.CarName);
+        //    }
+        //}
 
     }
 }

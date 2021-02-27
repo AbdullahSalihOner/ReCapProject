@@ -37,5 +37,10 @@ namespace Business.Constants
         internal static string ColorDeleted;
         internal static string ColorAdded;
         internal static string ColorUpdated;
+        internal static string CarImagesListed;
+        internal static string CarCountOfCategoryError;
+        internal static string CarNameAlreadyExists;
+        internal static string CategoryLimitExceded;
+        public static string CountOfPictureError = "Fazla fotporaf";
     }
 }
