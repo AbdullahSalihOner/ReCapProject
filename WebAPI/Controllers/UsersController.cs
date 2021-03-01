@@ -13,12 +13,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        IUserService  _userService;
+        readonly IUserService _userService;
 
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -29,8 +30,22 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _userService.GetById(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+
         [HttpPost("add")]
-        public IActionResult Add(User user )
+        public IActionResult Add(User user)
         {
             var result = _userService.Add(user);
             if (result.Success)
@@ -39,6 +54,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+
         [HttpPost("delete")]
         public IActionResult Delete(User user)
         {
@@ -49,7 +66,9 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpPost("Update")]
+
+        
+        [HttpPut("Update")]
         public IActionResult Update(User user)
         {
             var result = _userService.Update(user);

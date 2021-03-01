@@ -47,5 +47,23 @@ namespace Business.Concrete
                 return new SuccessResult(Messages.UserUpdated);
 
         }
+
+        public IDataResult<User> GetByMail(string email)
+        {
+            var getByMail = _userDal.Get(u => u.Email == email);
+            return new SuccessDataResult<User>(getByMail);
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            var getClaims = _userDal.GetClaims(user);
+            return new SuccessDataResult<List<OperationClaim>>(getClaims);
+        }
+
+        public IDataResult<User> GetById(int userId)
+        {
+            var getById = _userDal.Get(u => u.Id == userId);
+            return new SuccessDataResult<User>(getById);
+        }
     }
 }

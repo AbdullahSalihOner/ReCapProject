@@ -78,7 +78,7 @@ namespace ConsoleUI
                 FirstName = "Montero",
                 LastName = "E",
                 Email = "MonteroE@html.com",
-                Password = "7890"
+                //Password = "7890"
             };
             userManager.Add(user);
         }
