@@ -2,6 +2,9 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -31,6 +34,7 @@ namespace Business.Concrete
 
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Car car)
         {
 
@@ -58,6 +62,7 @@ namespace Business.Concrete
         }
 
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 15)
@@ -68,7 +73,8 @@ namespace Business.Concrete
         }
 
 
-
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
@@ -98,6 +104,7 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Car car)
         {
 
@@ -137,6 +144,16 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CategoryLimitExceded);
             }
             return new SuccessResult();
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            
+                _carDal.Update(car);
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarUpdated);
+            
         }
     }
 }
