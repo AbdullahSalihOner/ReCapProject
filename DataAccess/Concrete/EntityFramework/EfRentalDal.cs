@@ -31,7 +31,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarName = ca.CarName,
                                  CompanyName = cus.CompanyName,
                                  CarId = ca.CarId,
-                                 RentDate = re.RentDate,
+                                 RentDate = re.RentStartDate,
                                  ReturnDate = re.ReturnDate,
                                  UserName = us.FirstName + " " + us.LastName
                              };

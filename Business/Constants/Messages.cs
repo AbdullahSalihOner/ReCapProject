@@ -42,7 +42,7 @@ namespace Business.Constants
         internal static string CarCountOfCategoryError;
         internal static string CarNameAlreadyExists;
         internal static string CategoryLimitExceded;
-        public static string CountOfPictureError = "Fazla fotporaf";
+        
 
         public static string AuthorizationDenied = "Yetkiniz yok";
 
@@ -52,5 +52,14 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
         public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
+
+
+        public static string CarImageAdded;
+        public static string CarImageUpdated;
+        public static string CarImageDeleted;
+        public static string CountOfPictureError = "Fazla fotoraf";
+        internal static string RentalUndeliveredCar;
+        internal static string RentalNotAvailable;
     }
 }
