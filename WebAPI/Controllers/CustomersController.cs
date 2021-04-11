@@ -30,15 +30,54 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetCustomerById(int customerId)
         {
-            var result = _customerService.GetCustomerById(id);
+            var result = _customerService.GetCustomerById(customerId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
+
+
+        [HttpGet("getcustomerdetails")]
+        public IActionResult GetCustomerDetail()
+        {
+            var result = _customerService.GetCustomerDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcustomerdetailbyid")]
+        public IActionResult GetCustomerDetailById(int customerId)
+        {
+            var result = _customerService.GetCustomerDetailById(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcustomerbyemail")]
+        public IActionResult GetCustomerByEmail(string email)
+        {
+            var result = _customerService.GetCustomerByEmail(email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+
         [HttpPost("add")]
         public IActionResult Add(Customer customer)
         {

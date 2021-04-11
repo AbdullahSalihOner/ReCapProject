@@ -1,8 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\00905b42-f1dc-46f2-960a-1d1e8329422c_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\47637ce7-0b1f-49b1-8fb9-df697ef60c72_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\5b3d2b55-ad0a-49ed-9d8e-f20a59156cda_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\8191ddfb-2a8b-493a-a09b-ca0ab80f6629_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\ab343c0a-0f54-48d1-ae0f-3cf2baf2c897_2_27_2021.jpg" />
+    <None Include="wwwroot\Images\f02eef1c-ba76-44c0-bc0b-43c0040840d7_2_27_2021.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />

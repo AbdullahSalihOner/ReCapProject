@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
@@ -13,13 +14,15 @@ namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
-        private readonly IUserService _userService;
-        private readonly ITokenHelper _tokenHelper;
+         IUserService _userService;
+         ITokenHelper _tokenHelper;
+         ICustomerService _customerService;
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, ICustomerService customerService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _customerService = customerService;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -43,7 +46,7 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
+            var userToCheck = _userService.GetByEmail(userForLoginDto.Email);
             if (userToCheck == null)
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
@@ -59,7 +62,7 @@ namespace Business.Concrete
 
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email).Data != null)
+            if (_userService.GetByEmail(email).Data != null)
             {
                 return new ErrorResult(Messages.UserAlreadyExists);
             }
@@ -73,6 +76,45 @@ namespace Business.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
 
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+      
+        public IDataResult<UserForUpdateDto> Update(UserForUpdateDto userForUpdate)
+        {
+            var currentUser = _userService.GetByUserId(userForUpdate.UserId);
+
+            var user = new User
+            {
+                Id = userForUpdate.UserId,
+                Email = userForUpdate.Email,
+                FirstName = userForUpdate.FirstName,
+                LastName = userForUpdate.LastName,
+                PasswordHash = currentUser.Data.PasswordHash,
+                PasswordSalt = currentUser.Data.PasswordSalt
+            };
+
+            byte[] passwordHash, passwordSalt;
+
+            if (userForUpdate.Password != "")
+            {
+                HashingHelper.CreatePasswordHash(userForUpdate.Password, out passwordHash, out passwordSalt);
+
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+            }
+
+            _userService.Update(user);
+
+            var customer = new Customer
+            {
+                Id = userForUpdate.CustomerId,
+                UserId = userForUpdate.UserId,
+                CompanyName = userForUpdate.CompanyName
+            };
+
+            _customerService.Update(customer);
+
+            return new SuccessDataResult<UserForUpdateDto>(userForUpdate, Messages.CustomerUpdated);
         }
     }
 }

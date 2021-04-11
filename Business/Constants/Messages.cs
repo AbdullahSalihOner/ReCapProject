@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -61,5 +62,18 @@ namespace Business.Constants
         public static string CountOfPictureError = "Fazla fotoraf";
         internal static string RentalUndeliveredCar;
         internal static string RentalNotAvailable;
+        internal static List<CarDetailDto> CarNotFound;
+        internal static string CardAdded;
+        internal static string CardDeleted;
+        internal static string CardUpdated;
+        internal static string FindexZero;
+        internal static string InsufficientScore;
+        internal static string SuccessfulPaid;
+        public static string AddSingular = " has been added.";
+        public static string UpdateSingular = " has been updated.";
+        public static string DeleteSingular = " has been deleted.";
+        public static string NotExist = "There is no such a ";
+        public static string NotEngouhFindex = "Your Findeks points are not enough to rent this car.";
+        public static string EngouhFindex = "Your Findeks points are enough to rent this car";
     }
 }
